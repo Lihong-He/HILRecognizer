@@ -1,0 +1,6 @@
+Dataset for 5 tasks: 
+testKaggle2.csv: Date Time,
+testCourseNumberAllLihong.csv: Course Number,
+testEmailAllSS.csv: Email Address,
+testPhoneAll.csv: Phone Number,
+testBillDateAllSS.csv: Bill Date.
