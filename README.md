@@ -1,9 +1,9 @@
 # HILRecognizer
 # Get Started
 
-HILRecognizer contains code and datasets for KDD 2019 publication:
+HILRecognizer contains code and datasets for our KDD 2019 publication:
 
-* **Zhang, S., He, L., Vucetic, S., Dragut, E., How to Invest my Time: Lessons from Human-in-the-Loop Entity Extraction, KDD, 2019**
+* [**How to Invest my Time: Lessons from Human-in-the-Loop Entity Extraction**](https://www.kdd.org/kdd2019/accepted-papers/view/how-to-invest-my-time-lessons-from-hitl-entity-extraction)
 
 To run the code, the following environment is required:
 * python==2.7.6
@@ -19,8 +19,8 @@ CUDA_VISIBLE_DEVICES="$dev"
 ``
 
 ``
-python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv \
---save "$outfolder" --pooling all --partition loo --epochs 5 --cuda --batch-size 512 \
+python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv 
+--save "$outfolder" --pooling all --partition loo --epochs 5 --cuda --batch-size 512 
 --tags o y --max_len 104 --label R.E.tag.gr6
 ``
 
@@ -32,9 +32,9 @@ Pretrain a deep model based on the weakly labeled data. Weak labels are generate
 ``CUDA_VISIBLE_DEVICES="$dev" ``
 
 ``
-python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv \
---save experiments/position/kaggle_bound/pretrain \
---params experiments/position/kaggle_bound/loo_R.E.tag_best_args.pkl \
+python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv 
+--save experiments/position/kaggle_bound/pretrain 
+--params experiments/position/kaggle_bound/loo_R.E.tag_best_args.pkl 
 --epochs 5 --cuda --batch-size 512 --tags o y --max_len 104 --label R.E.tag --run pretrain
 ``
 
@@ -59,10 +59,10 @@ CUDA_VISIBLE_DEVICES="$dev"
 ``
 
 ``
-python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv \
---save experiments/position/kaggle_bound/"$outfolder"/ \
---params experiments/position/kaggle_bound/"$best_args" \
---pretrain experiments/position/kaggle_bound/pretrain/"$pretrain" \
---epochs 10 --cuda --partition outlet --batch-size 300 --tags o y --max_len 104 --label TagLabel \
+python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv 
+--save experiments/position/kaggle_bound/"$outfolder"/ 
+--params experiments/position/kaggle_bound/"$best_args" 
+--pretrain experiments/position/kaggle_bound/pretrain/"$pretrain" 
+--epochs 10 --cuda --partition outlet --batch-size 300 --tags o y --max_len 104 --label TagLabel 
 --fold "$fold" --run al --al_bs "$albs" --al_iter "$aliter" 
 ``
