@@ -15,7 +15,11 @@ After the 5 fold cross validation, the best hyperparameter ``XX.pkl`` is output 
 
 ``
 outfolder="experiments/position/kaggle_bound/pretrain"
-CUDA_VISIBLE_DEVICES="$dev" python s_train_bilstm_tagger.py --data data/position/testKaggle2.csv \
+CUDA_VISIBLE_DEVICES="$dev" 
+``
+
+``
+python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv \
 --save "$outfolder" --pooling all --partition loo --epochs 5 --cuda --batch-size 512 \
 --tags o y --max_len 104 --label R.E.tag.gr6
 ``
@@ -23,22 +27,31 @@ CUDA_VISIBLE_DEVICES="$dev" python s_train_bilstm_tagger.py --data data/position
 
 # Pretrain on weakly labelled data
 
-``CUDA_VISIBLE_DEVICES="$dev" python s_train_bilstm_tagger.py --data data/position/testKaggleAll.csv \
+``CUDA_VISIBLE_DEVICES="$dev" ``
+
+``
+python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv \
 --save experiments/position/kaggle_bound/pretrain \
 --params experiments/position/kaggle_bound/loo_R.E.tag_best_args.pkl \
---epochs 5 --cuda --batch-size 512 --tags o y --max_len 104 --label R.E.tag --run pretrain``
+--epochs 5 --cuda --batch-size 512 --tags o y --max_len 104 --label R.E.tag --run pretrain
+``
 
 # Fine-tuninig pre-trained model with active learning
-``aliter=50 # active learning iterations
+``
+aliter=50 # active learning iterations
 albs=20   # active learning batch size
 epoch=10  # active learning epochs
 best_args="loo_R.E.tag_best_args.pkl"   # best args of pretrained model
 pretrain= "R.E.tag_testKaggleAll_pretrain_5.pt"   # pretrained model
 outfolder="active_learning_cv_by_outlet_retag_pt5" # output folder
+``
 
-CUDA_VISIBLE_DEVICES="$dev" python s_train_bilstm_tagger.py --data data/position/testKaggle2.csv \
+``
+CUDA_VISIBLE_DEVICES="$dev" 
+python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv \
 --save experiments/position/kaggle_bound/"$outfolder"/ \
 --params experiments/position/kaggle_bound/"$best_args" \
 --pretrain experiments/position/kaggle_bound/pretrain/"$pretrain" \
 --epochs 10 --cuda --partition outlet --batch-size 300 --tags o y --max_len 104 --label TagLabel \
---fold "$fold" --run al --al_bs "$albs" --al_iter "$aliter" ``
+--fold "$fold" --run al --al_bs "$albs" --al_iter "$aliter" 
+``
