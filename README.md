@@ -39,6 +39,14 @@ python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv \
 ``
 
 # Fine-tuninig pre-trained model with active learning
+
+Fine-tune the pre-trained model with ``albs`` human labels each iteration.
+
+aliter: active learning iterations \
+albs: active learning batch size \
+epoch: active learning epochs \
+pretrain: pretrained model
+
 ``
 aliter=50  albs=20  epoch=10 
 best_args="loo_R.E.tag_best_args.pkl" 
@@ -49,6 +57,7 @@ outfolder="active_learning_cv_by_outlet_retag_pt5"
 ``
 CUDA_VISIBLE_DEVICES="$dev" 
 ``
+
 ``
 python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv \
 --save experiments/position/kaggle_bound/"$outfolder"/ \
@@ -57,8 +66,3 @@ python s_train_bilstm_tagger.py --data data/testDateTimeAll.csv \
 --epochs 10 --cuda --partition outlet --batch-size 300 --tags o y --max_len 104 --label TagLabel \
 --fold "$fold" --run al --al_bs "$albs" --al_iter "$aliter" 
 ``
-
-aliter: active learning iterations \
-albs: active learning batch size \
-epoch: active learning epochs \
-pretrain: pretrained model
