@@ -1,9 +1,14 @@
 # HILRecognizer
+
+# Abstract
+
+Recognizing entities that follow or closely resemble a regular expression (regex) pattern is an important task in information extraction. Common approaches for extraction of such entities require humans to either write a regex recognizing an entity or manually label entity mentions in a document corpus. In this project, we propose an iterative human-in-the-loop (HIL) framework that allows users to write a regex or manually label entity mentions, followed by training and refining a classifier based on the provided information.
+
 # Get Started
 
 HILRecognizer contains code and datasets for our KDD 2019 publication:
 
-* [**How to Invest my Time: Lessons from Human-in-the-Loop Entity Extraction**](https://www.kdd.org/kdd2019/accepted-papers/view/how-to-invest-my-time-lessons-from-hitl-entity-extraction)
+[**How to Invest my Time: Lessons from Human-in-the-Loop Entity Extraction**](https://dl.acm.org/doi/abs/10.1145/3292500.3330773?casa_token=8BqHmlAfMVUAAAAA:nvpeahAQ4wzjSd93Tt3IYggimKpjW9EDXRjokQsVY2MMA6Y97i_9DOnP1rK85lEdAD7am1BAuduz)
 
 To run the code, the following environment is required:
 * python==2.7.6
